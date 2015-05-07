@@ -1,0 +1,40 @@
+<project name="tools" default="build" basedir=".">
+  <property name="gwt.root" location=".." />
+  <property name="project.tail" value="tools" />
+  <import file="${gwt.root}/common.ant.xml" />
+
+        <!-- "build" is the default when subprojects are directly targeted -->
+        <property name="target" value="build" />
+
+        <target name="api-checker" depends=""
+          description="Compile api-checker">
+                <gwt.ant dir="api-checker" />
+        </target>
+
+        <target name="cldr-import" depends="" description="Compile CLDR import">
+                <gwt.ant dir="cldr-import" />
+        </target>
+
+  <target name="-do" depends="api-checker,cldr-import"
+    description="Run all subfolders that don't have additional dependencies" />
+
+  <target name="build" description="Build each subfolder">
+    <antcall target="-do">
+      <param name="target" value="build" />
+    </antcall>
+  </target>
+
+  <target name="checkstyle"
+    description="Static analysis of source for each subfolder">
+    <antcall target="-do">
+      <param name="target" value="checkstyle" />
+    </antcall>
+  </target>
+
+  <target name="test" depends="build" description="Test each subfolder">
+    <antcall target="-do">
+      <param name="target" value="test" />
+    </antcall>
+  </target>
+</project>
+
