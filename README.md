@@ -9,9 +9,21 @@ And in addtion to the changes from the above patch the following were modified:
 
 * com.google.gwt.dev.cfg.ModuleDefLoader.loadFromClassPath
 * imp. iterator com.google.gwt.dev.cfg.Properties.java
+* com.google.gwt.dev.shell.ShellModuleSpaceHost.invalidateRebind... may not work
 * added... might not be right but it works so far, com.google.gwt.dev.cfg.BindingProperty.setAllowedValues 
 
-My Windows Build Notes
+OS X Build Notes
+```
+svn checkout http://google-web-toolkit.googlecode.com/svn/tools/ tools
+git clone https://gwt.googlesource.com/gwt release/2.7
+
+export JAVA_HOME="/usr/libexec/java_home"
+export GWT_TOOLS="/repos/gwt-tools"
+
+../apache-ant-1.9.6/bin/ant
+```
+
+Windows Build Notes
 ```
 # My GWT 2.7 Source directory looks like the following
 # /GWT2.7
